@@ -61,7 +61,8 @@ async def read_root(request: Request):
     """
     Serve the index.html template.
     """
-    return templates.TemplateResponse("index.html", {"request": request})
+    # Starlette >= 1.0 signature: request is the first positional argument.
+    return templates.TemplateResponse(request=request, name="index.html")
 
 @app.get("/health")
 async def health_check():
